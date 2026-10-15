@@ -1,0 +1,30 @@
+services:
+  laravel:
+    build:
+      context: ./DeliveryRouter
+      dockerfile: Dockerfile
+    container_name: laravel_app
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./DeliveryRouter:/var/www/html
+    environment:
+      - FASTAPI_URL=http://fastapi:8001
+    command: php artisan serve --host=0.0.0.0 --port=8000
+    depends_on:
+      - fastapi
+
+  fastapi:
+    build:
+      context: ./Smart Delivery Router
+      dockerfile: Dockerfile
+    container_name: fastapi_app
+    ports:
+      - "8001:8001"
+    volumes:
+      - ./Smart Delivery Router:/app
+    command: uvicorn main:app --host 0.0.0.0 --port 8001 --reload
+
+networks:
+  default:
+    name: app-network

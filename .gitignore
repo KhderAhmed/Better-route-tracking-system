@@ -1,0 +1,14 @@
+/vendor/
+/node_modules/
+/public/build/
+.env
+.env.backup
+.phpunit.result.cache
+/storage/*.key
+/storage/framework/
+/storage/logs/
+__pycache__/
+*.pyc
+*.sqlite
+.idea/
+.vscode/
